@@ -4,13 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "electron ./index.js",
+    "start": "npm run open && cd api && npm run start",
+    "start_electron": "electron ./index.js",
+    "build": "npm i",
     "build_all": "npm i && cd api && npm i",
     "dist_win": "electron-builder --win --x64",
     "dist_linux": "electron-builder --linux --x64",
     "dist_mac": "electron-builder --mac --x64",
-    "ui_local": "node ui",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "open": "start http://localhost:8081/latticelium/ui/index.html"
   },
   "keywords": [],
   "author": "shane-reaume",
@@ -18,8 +20,8 @@
   "dependencies": {
     "connect": "^3.7.0",
     "cors": "^2.8.5",
-    "express": "^4.18.1",
-    "mongoose": "^6.6.4",
+    "express": "^4.18.2",
+    "mongoose": "^6.9.0",
     "mongoose-beautiful-unique-validation": "^7.1.1",
     "path": "^0.12.7",
     "serve-static": "^1.15.0"

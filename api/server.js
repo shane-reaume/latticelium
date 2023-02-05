@@ -5,10 +5,11 @@ const app = express();
 
 app.use(cors({ origin: "*" }));
 app.use(express.json({limit: '50mb'}));
-app.use(express.urlencoded({limit: '50mb'}));
+app.use(express.urlencoded({extended: true, limit: '50mb'}));
 
 const db = require("./app/models");
 db.mongoose
+    .set('strictQuery', false)
     .connect(db.url, {
         useNewUrlParser: true,
         useUnifiedTopology: true

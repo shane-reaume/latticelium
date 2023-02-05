@@ -119,7 +119,6 @@ dist
 # don't save tenant logins in repo
 # manual update in pipeline Env Variables and in your local for local testing
 credDB.json
-!credQACLOUD.json.remove
 
 package-lock.json
 !package-lock.json.remove

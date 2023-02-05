@@ -1,7 +1,7 @@
 {
   "name": "latticelium_api",
   "version": "1.0.0",
-  "description": "latticelium_api is a Node.js Restful CRUD API with Node.js, Express and MongoDB",
+  "description": "latticelium_api is a Node.js Restful API with Express and Mongoose",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -13,8 +13,8 @@
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.18.1",
-    "mongoose": "^6.6.4",
+    "express": "^4.18.2",
+    "mongoose": "^6.9.0",
     "mongoose-beautiful-unique-validation": "^7.1.1"
   }
 }

@@ -1,7 +1,11 @@
 const db = require("../models");
 const Jsonsets = db.jsonsets;
 
-// Create and Save a new json-set
+/**
+ * Create and Save a new json-set
+ * @param req
+ * @param res
+ */
 exports.create = (req, res) => {
 
 };
@@ -16,34 +20,60 @@ exports.findOne = (req, res) => {
 
 };
 
-// Update a json-set by the id in the request
+/**
+ * Update a json-set by the id in the request
+ * @param req
+ * @param res
+ */
 exports.update = (req, res) => {
 
 };
 
-// Delete a json-set with the specified id in the request
+/**
+ * Delete a json-set with the specified id in the request
+ * @param req
+ * @param res
+ */
 exports.delete = (req, res) => {
 
 };
 
-// Delete all json-sets from the database.
+/**
+ * Delete all json-sets from the database.
+ * @param req
+ * @param res
+ */
 exports.deleteAll = (req, res) => {
 
 };
 
-// Find all published json-sets
+/**
+ * Find all published json-sets
+ * @param req
+ * @param res
+ */
 exports.findAllPublished = (req, res) => {
 
 };
 
+/**
+ *
+ * @param req
+ * @param res
+ */
 exports.create = (req, res) => {
-    // Validate request
+
+    /**
+     * Validate request
+     */
     if (!req.body.title) {
         res.status(400).send({ message: "Content can not be empty!" });
         return;
     }
 
-    // Create a json-set
+    /**
+     * Create a json-set
+     */
     const jsonsets = new Jsonsets({
         title: req.body.title,
         description: req.body.description,
@@ -51,7 +81,9 @@ exports.create = (req, res) => {
         published: req.body.published ? req.body.published : false
     });
 
-    // Save json-set in the database
+    /**
+     * Save json-set in the database
+      */
     jsonsets
         .save(jsonsets)
         .then(data => {
@@ -65,6 +97,11 @@ exports.create = (req, res) => {
         });
 };
 
+/**
+ *
+ * @param req
+ * @param res
+ */
 exports.findAll = (req, res) => {
     const title = req.query.title;
     var condition = title ? { title: { $regex: new RegExp(title), $options: "i" } } : {};
@@ -81,6 +118,11 @@ exports.findAll = (req, res) => {
         });
 };
 
+/**
+ *
+ * @param req
+ * @param res
+ */
 exports.findOne = (req, res) => {
     const id = req.params.id;
 
@@ -97,6 +139,12 @@ exports.findOne = (req, res) => {
         });
 };
 
+/**
+ *
+ * @param req
+ * @param res
+ * @returns {*}
+ */
 exports.update = (req, res) => {
     if (!req.body) {
         return res.status(400).send({
@@ -121,6 +169,11 @@ exports.update = (req, res) => {
         });
 };
 
+/**
+ *
+ * @param req
+ * @param res
+ */
 exports.delete = (req, res) => {
     const id = req.params.id;
 
@@ -143,6 +196,11 @@ exports.delete = (req, res) => {
         });
 };
 
+/**
+ *
+ * @param req
+ * @param res
+ */
 exports.deleteAll = (req, res) => {
     Jsonsets.deleteMany({})
         .then(data => {
@@ -158,6 +216,11 @@ exports.deleteAll = (req, res) => {
         });
 };
 
+/**
+ *
+ * @param req
+ * @param res
+ */
 exports.findAllPublished = (req, res) => {
     Jsonsets.find({ published: true })
         .then(data => {
