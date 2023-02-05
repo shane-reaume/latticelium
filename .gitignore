@@ -102,3 +102,25 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Stores VSCode versions used for testing VSCode extensions
+.vscode-test
+
+# yarn v2
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+# jetbrains (i.e. webstorm, pycharm etc)
+.idea
+
+# don't save tenant logins in repo
+# manual update in pipeline Env Variables and in your local for local testing
+credDB.json
+!credQACLOUD.json.remove
+
+package-lock.json
+!package-lock.json.remove
+.DS_Store

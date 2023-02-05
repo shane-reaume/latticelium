@@ -1,0 +1,6 @@
+{
+  "ADMIN_USER": null,
+  "ADMIN_PASS": null,
+  "USE_CRED": false,
+  "DB_PATH": "127.0.0.1:27017"
+}

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Edge DX json set Requests</title>
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="dark.css" />
+</head>
+<body>
+<div class="container" style="max-width: 600px">
+
+    <h1>Latticelium json set Requests</h1>
+
+    <div class="card">
+        <h3 class="card-header">GET Request - jsonsets</h3>
+        <div class="card-body">
+            <div class="input-group input-group-sm">
+                <div style="padding-bottom: 15px">
+                    <button style="color: #34596b" class="btn btn-sm btn-link pull-right" onclick="getAllData()">GET ALL DATA ( for testing only )</button>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="get-id" class="form-control" placeholder="Id...">
+                </div>
+                <div class="input-group-append form-group">
+                    <button class="btn btn-sm btn-primary" onclick="getDataById()">Get by Id</button>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="get-title" class="form-control" placeholder="Title (filter all titles)...">
+                </div>
+                <div class="input-group-append">
+                    <button class="btn btn-sm btn-primary" onclick="getDataByTitle()">Find By Title</button>
+                    <button style="color: #34596b" type="button" class="btn btn-sm btn-link pull-right" onclick="clearAll()">Clear</button>
+                </div>
+
+            </div>
+
+            <div id="getResult"></div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3 class="card-header">POST Request - jsonsets</h3>
+        <div class="card-body">
+            <div class="form-group">
+                <input type="text" class="form-control" id="post-title" placeholder="Title (unique)...">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="post-description" placeholder="Description...">
+            </div>
+
+            <!-- TODO: when we want a drop down form
+            see this when adding to mongoose https://stackoverflow.com/questions/57676596/how-to-allow-only-certain-string-values-inside-a-mongodb-array-using-mongoose
+            <div class="form-group">
+                <label for="post-os">Choose your OS...</label>
+                <select class="form-control" name="post-os" id="post-os">
+                    <option value="rigatoni">Win</option>
+                    <option value="dave">MacOS</option>
+                    <option value="pumpernickel">Linux</option>
+                </select>
+            </div>
+            -->
+
+            <div class="form-group" style="background-color: #313131; border-radius: 5px; border: 1px dashed rgba(0, 187, 255, 0.35);">
+                <form class="row" id="upload">
+                    <input class="form-control column" type="file" id="file" accept=".json">
+                    <button class="btn btn-sm btn-success pull-right column-button">Upload</button>
+                </form>
+                <textarea cols="50" rows="5" class="form-control" id="post-data" placeholder="Upload JSON File or Paste in Data object..."></textarea>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="post-published">
+                <label style="width: 49%;" class="form-check-label" for="post-published">Publish</label>
+                <button style="color: #34596b" class="btn btn-sm btn-link pull-right" onclick="clearAll()">Clear</button>
+                <button style="color: #6b6634" class="btn btn-sm btn-link pull-right" onclick="pretty()">Pretty</button>
+            </div>
+            <div style="margin-top: 15px">
+                <button class="btn btn-sm btn-primary" onclick="postData()">Post Data</button>
+            </div>
+            <div id="postResult"></div>
+        </div>
+    </div>
+
+    <!-- TODO: when we want an update option -->
+   <!-- <div class="card">
+        <h3 class="card-header">PUT Request - jsonsets</h3>
+        <div class="card-body">
+            <div class="form-group">
+                <input type="text" class="form-control" id="put-id" placeholder="Id">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="put-title" placeholder="Title">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="put-description" placeholder="Description">
+            </div>
+            <div class="form-group">
+                <textarea type="text" class="form-control" id="put-data" style="min-height: 150px;" placeholder="Data"></textarea>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="put-published">
+                <label class="form-check-label" for="put-published">Publish</label>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-sm btn-primary" onclick="putData()">Update Data</button>
+                <button style="color: #34596b" class="btn btn-sm btn-link pull-right" onclick="clearPutOutput()">Clear</button>
+            </div>
+
+            <div id="putResult"></div>
+        </div>
+    </div> -->
+
+    <div class="card">
+        <h3 class="card-header">DELETE Request - jsonsets</h3>
+        <div class="card-body">
+            <div class="input-group input-group-sm">
+                <div class="form-group">
+                    <input type="text" id="delete-id" class="form-control" placeholder="Id...">
+                </div>
+                <div class="input-group-append" style="padding-bottom: 15px">
+                    <button class="btn btn-sm btn-danger" onclick="deleteDataById()">Delete by Id</button>
+                    <button style="color: #34596b" class="btn btn-sm btn-link pull-right" onclick="clearAll()">Clear</button>
+                </div>
+
+            </div>
+
+            <div id="deleteResult"></div>
+        </div>
+    </div>
+</div>
+<script>
+    // Get the form and file field
+    let form = document.querySelector('#upload');
+    let file = document.querySelector('#file');
+
+    /**
+     * Log the uploaded file to the console
+     * @param {event} Event The file loaded event
+     */
+    function logFile (event) {
+        let str = event.target.result;
+        let json = JSON.parse(str);
+        console.log('string', str);
+        console.log('json', json);
+
+        document.getElementById('post-data').value = JSON.stringify(json, undefined, 4);
+    }
+
+    /**
+     * Handle submit events
+     * @param  {Event} event The event object
+     */
+    function handleSubmit (event) {
+
+        // Stop the form from reloading the page
+        event.preventDefault();
+
+        // If there's no file, do nothing
+        if (!file.value.length) return;
+
+        // Create a new FileReader() object
+        let reader = new FileReader();
+
+        // Setup the callback event to run when the file is read
+        reader.onload = logFile;
+
+        // Read the file
+        reader.readAsText(file.files[0]);
+
+    }
+
+    // Listen for submit events
+    form.addEventListener('submit', handleSubmit);
+</script>
+<script src="axios.min.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

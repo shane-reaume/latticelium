@@ -1,0 +1,41 @@
+{
+  "name": "qa_lattice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron ./index.js",
+    "build_all": "npm i && cd api && npm i",
+    "dist_win": "electron-builder --win --x64",
+    "dist_linux": "electron-builder --linux --x64",
+    "dist_mac": "electron-builder --mac --x64",
+    "ui_local": "node ui",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "shane-reaume",
+  "license": "ISC",
+  "dependencies": {
+    "connect": "^3.7.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "mongoose": "^6.6.4",
+    "mongoose-beautiful-unique-validation": "^7.1.1",
+    "path": "^0.12.7",
+    "serve-static": "^1.15.0"
+  },
+  "devDependencies": {
+    "electron": "^21.0.1",
+    "electron-builder": "^23.3.3"
+  },
+  "build": {
+    "appId": "com.electron.app",
+    "win": {
+      "target": "portable"
+    },
+    "portable": {
+      "unicode": false,
+      "artifactName": "jsonsets_test001_app.exe"
+    }
+  }
+}
