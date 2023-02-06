@@ -7,6 +7,7 @@ After starting the API server, all CRUD actions can be performed against your Mo
 
 ### UI
 We have included a static UI to send HTTP requests to your RESTful API using Axios XMLHttpRequests via the browser.
+![UI Screenshot](https://github.com/shane-reaume/latticelium/blob/master/ui/images/ui_screenshot.jpg?raw=true)
 
 ### Desktop App
 This project also includes an Electron build to combine the API and UI in one simple desktop application, with Windows, MacOS and linux builds.
