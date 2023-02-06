@@ -14,7 +14,7 @@ function createWindow() {
         },
     });
 
-    mainWindow.loadURL(path.join(__dirname, "ui/index.html"));
+    mainWindow.loadURL((`file://${__dirname}/ui/index.html`));
     mainWindow.on("closed", function () {
         mainWindow = null;
     });
