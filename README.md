@@ -2,6 +2,25 @@
 
 Latticelium is designed for managing json files with a Web or Electron user interface.
 
+# Table of Contents
+
+- [API](#API)
+- [UI](#UI)
+- [Desktop App](#Desktop App)
+- [Jsonsets Collection](#Jsonsets Collection)
+- [Prerequisites](#Prerequisites)
+   - [Nodejs](#Nodejs)
+   - [MongoDB](#MongoDB)
+      - [Install MongoDB & add Admin](#Install MongoDB and add Admin)
+      - [Add Mongo credentials to Latticelium](#Add Mongo credentials to Latticelium)
+- [Build All](#Build All)
+- [Start Server and open static UI](#Start Server and open static UI)
+- [Electron](#Electron)
+   - [Build an Electron Desktop app with executable file](#Build an Electron Desktop app with executable file)
+   - [Run Electron app](#Run Electron app)
+- [Build and Start API only](#Build and Start API only)
+- [Run UI locally](#Run UI locally)
+
 ### API
 Latticelium-API consists of a RESTful API that performs CRUD updates to a mongodb database on the backend using express + mongoose. 
 
@@ -14,7 +33,7 @@ We have included a static UI to send HTTP requests to your RESTful API using Axi
 ### Desktop App
 This project also includes an Electron build to combine the API and UI in one simple desktop application, with Windows, MacOS and linux builds.
 
-### jsonsets Collection
+### Jsonsets Collection
 This MongoDB Collection is designed to manage json data with a title and description as the first of many collections I plan to build out in this project. 
 
 ---
@@ -82,7 +101,7 @@ This installs all your npm dependencies.
 
 ---
 
-# Start Server & open static UI
+# Start Server and open static UI
 
 `npm start`
 
@@ -90,18 +109,19 @@ This starts your RESTful API server and opens the local static UI in your defaul
 
 # Electron
 
-#### Run Electron app
-
-`npm run start_electron` - if all goes well you should see the Electron app open locally, running off the index.js file as your client side application.
-
-This script automatically starts the RESTful API server as well and makes the database connection.
-
 #### Build an Electron Desktop app with executable file
 1. `npm run dist_win` Windows .exe
 2. `npm run dist_mac` MacOS
 3. `npm run dist_linux` Linux
 
 These scripts will generate an executable that you can run anytime or even share. Do some deeper investigations if looking to establish security as this is more of a proof of concept.
+
+#### Run Electron app
+
+`npm run start_electron` - if all goes well you should see the Electron app open locally, running off the index.js file as your client side application.
+
+This script automatically starts the RESTful API server as well and makes the database connection.
+
 
 ### Build and Start API only
 1. `cd api`
