@@ -1,7 +1,9 @@
 # Introduction to Latticelium
 
+Latticelium is designed for managing json files with a Web or Electron user interface.
+
 ### API
-Latticelium consists of a RESTful API that performs CRUD updates to a mongodb database on the backend using express + mongoose. 
+Latticelium-API consists of a RESTful API that performs CRUD updates to a mongodb database on the backend using express + mongoose. 
 
 After starting the API server, all CRUD actions can be performed against your MongoDB database. 
 
