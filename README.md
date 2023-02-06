@@ -1,3 +1,6 @@
+![Linux](https://img.shields.io/badge/Linux-%23.svg?logo=linux&color=FCC624&logoColor=black)
+![macOS](https://img.shields.io/badge/macOS-%23.svg?logo=apple&color=000000&logoColor=white)
+![Windows](https://img.shields.io/badge/Windows-%23.svg?logo=windows&color=0078D6&logoColor=white)
 # Introduction to Latticelium
 
 Latticelium is designed for managing json files with a Web or Electron user interface.
